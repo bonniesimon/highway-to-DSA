@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution {
 public:
-	int findDuplicate(vector<int>& nums) 
+	int findDuplicateUsingHashTable(vector<int>& nums) 
 	{
 		unordered_set<int> hash_table;
 		for(auto num: nums){
@@ -22,6 +22,26 @@ public:
 		}
 		return 0;
     }
+
+	int findDuplicate(vector<int>& nums){
+		int slow, fast;
+		slow = 0;
+		fast = 0;
+		slow = nums[slow];
+		fast = nums[nums[fast]];
+		while(slow != fast){
+			slow = nums[slow];
+			fast = nums[nums[fast]];
+		}
+		fast = 0;
+		while(slow != fast){
+			slow = nums[slow];
+			fast = nums[fast];
+		}
+		// cout << "slow = " << slow << endl;
+		// cout << "fast = " << fast << endl;
+		return fast;
+	}
 	
 };
 
